@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Database;
 
 namespace Persistence.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210425045136_AddIdentity")]
+    partial class AddIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -316,36 +318,6 @@ namespace Persistence.Database.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
                     b.HasDiscriminator().HasValue("ApplicationRole");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "99588087-3b24-4e65-a794-c36af00a7630",
-                            ConcurrencyStamp = "957c105b-160a-44f6-b927-6e082adb9a31",
-                            Name = "Ojo",
-                            NormalizedName = "Ojo"
-                        },
-                        new
-                        {
-                            Id = "d42500f8-ceeb-4888-a768-295d679ee2b4",
-                            ConcurrencyStamp = "21bb6c60-5599-47ed-976c-ba9e2c7d5b2a",
-                            Name = "Bruja",
-                            NormalizedName = "Bruja"
-                        },
-                        new
-                        {
-                            Id = "cd52e489-07f7-4f4b-ba4e-4cf63b232879",
-                            ConcurrencyStamp = "ba1aec25-3bfd-4ff1-adbc-bc2e8b598dad",
-                            Name = "Ciudadano",
-                            NormalizedName = "Ciudadano"
-                        },
-                        new
-                        {
-                            Id = "789c3ec1-520f-43f6-bac0-7806b2bc2b93",
-                            ConcurrencyStamp = "2767d426-0ca1-4c36-9d9a-a06b2ceb1425",
-                            Name = "Administrador",
-                            NormalizedName = "Administrador"
-                        });
                 });
 
             modelBuilder.Entity("INDIMIN.Model.Identity.ApplicationUser", b =>

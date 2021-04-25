@@ -12,6 +12,7 @@ namespace INDIMIN.Service
 {
     public interface IEjecutarTareaService
     {
+        Task<DataCollection<EjecutarTareaDto>> GetAllByDia(int diaId, int page, int take);
         Task<DataCollection<EjecutarTareaDto>> GetAll(int page, int take);
         Task<EjecutarTareaDto> GetById(int id);
         Task<EjecutarTareaDto> Create(EjecutarTareaCreateDto model);
@@ -28,7 +29,18 @@ namespace INDIMIN.Service
             _context = context;
             _mapper = mapper;
         }
-
+        public async Task<DataCollection<EjecutarTareaDto>> GetAllByDia(int diaId, int page, int take)
+        {
+            return _mapper.Map<DataCollection<EjecutarTareaDto>>(
+                await _context.EjecutarTareas.Where(x => x.DiaId == diaId)
+                    .OrderByDescending(x => x.EjecutarTareaId)
+                    .Include(x => x.Ciudadano)
+                    .Include(x => x.Dia)
+                    .Include(x => x.Tarea)
+                    .AsQueryable()
+                    .PagedAsync(page, take)
+            ); ;
+        }
         public async Task<DataCollection<EjecutarTareaDto>> GetAll(int page, int take)
         {
             return _mapper.Map<DataCollection<EjecutarTareaDto>>(

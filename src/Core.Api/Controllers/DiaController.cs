@@ -1,6 +1,8 @@
-﻿using INDIMIN.Model.DTOs;
+﻿using Core.Api.Commons;
+using INDIMIN.Model.DTOs;
 using INDIMIN.Service;
 using INDIMIN.Service.Commons;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -16,18 +18,21 @@ namespace Core.Api.Controllers
             _DiaService = DiaService;
         }
 
+        [Authorize(Roles = RoleHelper.Administrador + "," + RoleHelper.Ojo + "," + RoleHelper.Bruja)]
         [HttpGet]
         public async Task<ActionResult<DataCollection<DiaDto>>> GetAll(int page, int take = 20)
         {
             return await _DiaService.GetAll(page, take);
         }
 
+        [Authorize(Roles = RoleHelper.Administrador + "," + RoleHelper.Ojo + "," + RoleHelper.Bruja)]
         [HttpGet("{id}")]
         public async Task<ActionResult<DiaDto>> GetById(int id)
         {
             return await _DiaService.GetById(id);
         }
 
+        [Authorize(Roles = RoleHelper.Administrador)]
         [HttpPost]
         public async Task<ActionResult> Create(DiaCreateDto model)
         {
@@ -39,6 +44,7 @@ namespace Core.Api.Controllers
             );
         }
 
+        [Authorize(Roles = RoleHelper.Administrador)]
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, DiaUpdateDto model)
         {
@@ -46,6 +52,7 @@ namespace Core.Api.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = RoleHelper.Administrador)]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Remove(int id)
         {

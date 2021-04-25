@@ -1,11 +1,14 @@
-﻿using INDIMIN.Model.DTOs;
+﻿using Core.Api.Commons;
+using INDIMIN.Model.DTOs;
 using INDIMIN.Service;
 using INDIMIN.Service.Commons;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Core.Api.Controllers
 {
+    [Authorize(Roles = RoleHelper.Ojo)]
     [Route("api/[controller]")]
     [ApiController]
     public class TareaController : ControllerBase

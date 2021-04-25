@@ -1,10 +1,12 @@
 ﻿using INDIMIN.Model;
+using INDIMIN.Model.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Database.Config;
 
 namespace Persistence.Database
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { 
@@ -22,6 +24,8 @@ namespace Persistence.Database
             new CiudadanoConfig(builder.Entity<Ciudadano>());
             new TareaConfig(builder.Entity<Tarea>());
             new DiaConfig(builder.Entity<Dia>());
+            new ApplicationUserConfig(builder.Entity<ApplicationUser>());
+            new ApplicationRoleConfig(builder.Entity<ApplicationRole>());
         }
     }
 }
