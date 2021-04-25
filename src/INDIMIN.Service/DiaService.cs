@@ -47,10 +47,7 @@ namespace INDIMIN.Service
 
         public async Task<DiaDto> Create(DiaCreateDto model)
         {
-            var entry = new Dia
-            {
-                Nombre = model.Nombre
-            };
+            var entry = _mapper.Map<Dia>(model);
 
             await _context.AddAsync(entry);
             await _context.SaveChangesAsync();

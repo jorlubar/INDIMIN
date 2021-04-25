@@ -47,10 +47,7 @@ namespace INDIMIN.Service
 
         public async Task<CiudadanoDto> Create(CiudadanoCreateDto model)
         {
-            var entry = new Ciudadano
-            {
-                Nombre = model.Nombre
-            };
+            var entry = _mapper.Map<Ciudadano>(model);
 
             await _context.AddAsync(entry);
             await _context.SaveChangesAsync();

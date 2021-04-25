@@ -47,10 +47,7 @@ namespace INDIMIN.Service
 
         public async Task<TareaDto> Create(TareaCreateDto model)
         {
-            var entry = new Tarea
-            {
-                Nombre = model.Nombre
-            };
+            var entry = _mapper.Map<Tarea>(model);
 
             await _context.AddAsync(entry);
             await _context.SaveChangesAsync();

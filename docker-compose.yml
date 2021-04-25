@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  core.api:
+    image: ${DOCKER_REGISTRY-}coreapi
+    build:
+      context: .
+      dockerfile: src/Core.Api/Dockerfile
+
+  indimin.client:
+    image: ${DOCKER_REGISTRY-}indiminclient
+    build:
+      context: .
+      dockerfile: src/INDIMIN.Client/Dockerfile
+

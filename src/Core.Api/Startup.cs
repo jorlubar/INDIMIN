@@ -36,6 +36,7 @@ namespace Core.Api
             services.AddTransient<ICiudadanoService, CiudadanoService>();
             services.AddTransient<IDiaService, DiaService>();
             services.AddTransient<ITareaService, TareaService>();
+            services.AddTransient<IEjecutarTareaService, EjecutarTareaService>();
 
             services.AddAutoMapper(typeof(Startup));
         }

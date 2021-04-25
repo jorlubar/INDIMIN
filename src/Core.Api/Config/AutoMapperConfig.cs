@@ -9,14 +9,21 @@ namespace Core.Api.Config
     {
         public AutoMapperConfig()
         {
+            CreateMap<CiudadanoCreateDto, Ciudadano>();
             CreateMap<Ciudadano, CiudadanoDto>();
             CreateMap<DataCollection<Ciudadano>, DataCollection<CiudadanoDto>>();
 
+            CreateMap<DiaCreateDto, Dia>();
             CreateMap<Dia, DiaDto>();
             CreateMap<DataCollection<Dia>, DataCollection<DiaDto>>();
 
+            CreateMap<TareaCreateDto, Tarea>();
             CreateMap<Tarea, TareaDto>();
             CreateMap<DataCollection<Tarea>, DataCollection<TareaDto>>();
+
+            CreateMap<EjecutarTareaCreateDto, EjecutarTarea>();
+            CreateMap<EjecutarTarea, EjecutarTareaDto>();
+            CreateMap<DataCollection<EjecutarTarea>, DataCollection<EjecutarTareaDto>>();
         }
     }
 }
